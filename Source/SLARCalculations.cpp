@@ -65,6 +65,11 @@ double* GauseCalculations(double **pMultiplierMatrix,
 
         for (int i = 0; i < nSize; i++)
             pTempMultiplierMatrix[nMainRow][i] = 0;
+
+        PrintDoubleMatrix(pTriangleMatrix, nSize, nSize);
+        printf("\n");
+        PrintDoubleArray(pNewVector, nSize);
+        printf("\n");
     }
 
     FreeDoubleMatrix(pTempMultiplierMatrix, nSize);
@@ -106,7 +111,6 @@ double* LUMethod(double **pMultiplierMatrix, double *pMembersArray, int nSize) {
 
     double sum = 0;
    
-
     for (int i = 0; i < nSize; i++) {
         for (int j = 0; j < nSize; j++) {
             pUMatrix[i][j] = 0;

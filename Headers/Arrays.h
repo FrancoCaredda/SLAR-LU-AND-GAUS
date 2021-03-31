@@ -17,6 +17,11 @@ void CopyMatrix(double **pDestination, double **pSource, int nRows, int nColumns
 //--------------------------------------------------------------------------------
 void CopyArray(double *pDestination, double *pSource, int nLength);
 //--------------------------------------------------------------------------------
+void ReadDataFromFileToMatrix(double **pMatrix, const char *pFileName,
+                              int nRows, int nColumns);
+//--------------------------------------------------------------------------------
+void ReadDataFromFileToArray(double *pArray, const char *pFileName, int nLength);
+//--------------------------------------------------------------------------------
 double** GenerateSmallerMatrix(double **pSource, int nRows, int nColumns, 
                            int nExeptedRow, int nExeptedColumn);
 //--------------------------------------------------------------------------------

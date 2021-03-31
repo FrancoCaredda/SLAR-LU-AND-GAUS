@@ -35,6 +35,56 @@ void EnterDoubleMatrix(double **pMatrix, int nRows, int nColumns) {
         }
     }
 }
+void ReadDataFromFileToMatrix(double **pMatrix, const char *pFileName,
+                              int nRows, int nColumns) {
+    FILE *pFile = fopen(pFileName, "rt");
+
+    if (pFile == nullptr) {
+        perror("CAN\'T READ A FILE!!!");
+        return;
+    }
+
+    for (int i = 0; i < nRows; i++) {
+        for (int j = 0; j < nColumns; j++) {
+            fscanf(pFile, "%lf", &pMatrix[i][j]);
+            
+            if (feof(pFile) != 0) {
+                return;
+            } else if (ferror(pFile) != 0) {
+                perror("ERROR OF READING FILE!!!");
+                fseek(pFile, 0, SEEK_SET);
+                return;
+            }
+        }
+    }
+
+    fclose(pFile);
+    pFile = nullptr;    
+}
+//--------------------------------------------------------------------------------
+void ReadDataFromFileToArray(double *pArray, const char *pFileName, int nLength) {
+    FILE *pFile = fopen(pFileName, "rt");
+
+    if (pFile == nullptr) {
+        perror("CAN\'T READ A FILE!!!");
+        return;
+    }
+
+    for (int i = 0; i < nLength; i++) {
+        fscanf(pFile, "%lf", &pArray[i]);
+            
+        if (feof(pFile) != 0) {
+            return;
+        } else if (ferror(pFile) != 0) {
+            perror("ERROR OF READING FILE!!!");
+            fseek(pFile, 0, SEEK_SET);
+            return;
+        }
+    }
+
+    fclose(pFile);
+    pFile = nullptr;     
+}
 //--------------------------------------------------------------------------------
 void EnterDoubleArray(double *pArray, int nLength) {
     for (int i = 0; i < nLength; i++)
